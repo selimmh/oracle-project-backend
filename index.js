@@ -5,6 +5,7 @@ process.env.ORA_SDTZ = 'UTC';
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
 const mypw = "OraPasswd1"  // set mypw to the hr schema password
+const port = process.env.PORT || 8080;
 
 async function run() {
   let app = express();
@@ -12,7 +13,7 @@ async function run() {
   app.get("/",(req,res)=>{
     res.send("heeye")
   })
-  app.listen(8080);
+  app.listen(port);
   
   try {
     oracledb.initOracleClient({libDir: '/Users/pyagmyrov/Downloads/instantclient_19_8'});
