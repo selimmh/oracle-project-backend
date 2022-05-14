@@ -10,18 +10,16 @@ const port = process.env.PORT || 8080;
 async function run() {
   let app = express();
 
-  app.get("/",(req,res)=>{
-    res.send("heeye")
-  })
+
   app.listen(port);
   
-//   try {
-//     oracledb.initOracleClient({libDir: '/Users/pyagmyrov/Downloads/instantclient_19_8'});
-//   } catch (err) {
-//     console.error('Whoops!');
-//     console.error(err);
-//     process.exit(1);
-//   }
+  try {
+    oracledb.initOracleClient({libDir: '/Users/pyagmyrov/Downloads/instantclient_19_8'});
+  } catch (err) {
+    console.error('Whoops!');
+    console.error(err);
+    process.exit(1);
+  }
   let connection;
 
   try {
@@ -68,8 +66,7 @@ async function run() {
     // }
     
 
-  
-
+ 
 
 
     sql = `SELECT * FROM patient`;
@@ -84,14 +81,17 @@ async function run() {
       // fetchArraySize:   100                 // internal buffer allocation size for tuning
     };
 
-    
-    result = await connection.execute(sql, binds, options);
+     
+
+    let result = await connection.execute(sql, binds, options);
 
     console.log("Metadata: ");
     console.dir(result.metaData, { depth: null });
     console.log("Query results: ");
     console.dir(result.rows, { depth: null });
-
+    app.get("/",(req,res)=>{
+        res.send(result.rows)
+      })
   console.log("db connected")
 
   } catch (err) {
