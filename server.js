@@ -10,7 +10,7 @@ async function run() {
   let app = express();
 
   app.get("/",(req,res)=>{
-    res.send("proiect")
+    res.send("heeye")
   })
   app.listen(8080);
   
