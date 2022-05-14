@@ -1,4 +1,5 @@
 const oracledb = require('oracledb');
+const express =  require("express");
 process.env.ORA_SDTZ = 'UTC';
 
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
@@ -6,6 +7,13 @@ oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 const mypw = "OraPasswd1"  // set mypw to the hr schema password
 
 async function run() {
+  let app = express();
+
+  app.get("/",(req,res)=>{
+    res.send("proiect")
+  })
+  app.listen(8080);
+  
   try {
     oracledb.initOracleClient({libDir: '/Users/pyagmyrov/Downloads/instantclient_19_8'});
   } catch (err) {
@@ -19,7 +27,7 @@ async function run() {
     connection = await oracledb.getConnection( {
       user          : "system",
       password      : mypw,
-      connectString : "db.yagmyrov.me:1521/oratest1"
+      connectString : "db.dintie.yagmyrov.me:1521/oratest1"
     });
 
     
