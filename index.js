@@ -92,7 +92,7 @@ async function run() {
     console.log("Query results: ");
     console.dir(result.rows, { depth: null });
     app.get("/",(req,res)=>{
-        res.send(result.rows)
+        res.send("salam")
       })
   console.log("db connected")
 
