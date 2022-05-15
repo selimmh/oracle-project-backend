@@ -12,8 +12,15 @@ async function run() {
 
 
   app.listen(port);
-  
-  
+  if (process.platform === 'darwin') {
+  try {
+    oracledb.initOracleClient({libDir: '/Users/pyagmyrov/downloads/instantclient_19_8'});
+  } catch (err) {
+    console.error('Whoops!');
+    console.error(err);
+    process.exit(1);
+  }
+  }
 
   let connection;
 
