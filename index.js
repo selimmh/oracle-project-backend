@@ -13,13 +13,8 @@ async function run() {
 
   app.listen(port);
   
-  try {
-    oracledb.initOracleClient({libDir: '/opt/oracle/instantclient_21_6'});
-  } catch (err) {
-    console.error('Whoops!');
-    console.error(err);
-    process.exit(1);
-  }
+  
+
   let connection;
 
   try {
