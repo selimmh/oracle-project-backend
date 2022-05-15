@@ -1,6 +1,7 @@
 const oracledb = require("oracledb");
 process.env.ORA_SDTZ = "UTC";
 const PatientController = require("./controllers/patientController.js");
+const MedicController = require("./controllers/medicController");
 const dbConfig = require("./db/config.js");
 const app = require("./app/express.js");
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
@@ -48,6 +49,26 @@ async function run() {
 
   app.delete("/patienti/delete", async(req,res)=>{
     let response = await PatientController.DeletePatient(connection,req.body.userId);
+    res.send(response);
+  })
+
+  app.get("/medici/get", async (req, res) => {
+    let medici = await MedicController.GetMedici(connection);
+    res.send(medici);
+  });
+
+  app.post("/medici/add", async (req, res) => {
+    let response = await MedicController.AddMedic(connection, req.body);
+    res.send(response);
+  });
+
+  app.put("/medici/update", async(req,res)=>{
+    let response = await MedicController.UpdateMailulMedicului(connection,req.body);
+    res.send(response);
+  })
+
+  app.delete("/medici/delete", async(req,res)=>{
+    let response = await MedicController.DeleteMedic(connection, req.body.userId);
     res.send(response);
   })
 

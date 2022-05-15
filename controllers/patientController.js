@@ -8,8 +8,15 @@ async function GetPatientii(connection) {
   options = {
     outFormat: oracledb.OUT_FORMAT_OBJECT,
   };
-  let result = await connection.execute(sql, binds, options);
-  return result.rows;
+  let result
+  try{
+      result = await connection.execute(sql, binds, options);
+      return result.rows;
+  } catch(e){
+      console.log(e);
+      return e
+  }
+  
 }
 
 async function AddPatient(connection, data) {
