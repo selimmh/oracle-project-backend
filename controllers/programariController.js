@@ -56,8 +56,8 @@ async function UpdateDataProgramari(connection, data) {
   let resData;
   try {
     result = await connection.execute(
-      "UPDATE medic set email=:email  WHERE id=:id ",
-      { email: data.email, id: data.userId },
+      "UPDATE programari set time=TO_DATE(:time, 'YYYY-MM-DD') WHERE id=:id ",
+      { time: data.time, id: data.userId },
       { autoCommit: true }
     );
     console.log("Rows updated: " + result.rowsAffected);
@@ -83,8 +83,8 @@ async function DeleteProgramari(connection, userId) {
   let resData;
   try {
     result = await connection.execute(
-      "DELETE FROM medic WHERE id=:id ",
-      { id: userId },
+      "DELETE FROM programari WHERE id=:id ",
+      { id: programariId },
       { autoCommit: true }
     );
     console.log("Rows deleted: " + result.rowsAffected);
