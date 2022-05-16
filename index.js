@@ -22,72 +22,89 @@ async function run() {
     }
   }
 
-  let connection;
-
-  try {
-    connection = await oracledb.getConnection(dbConfig);
-    console.log("db connected");
-  } catch (err) {
-    console.error(err);
-  }
+  console.log("hellooo")
 
   app.get("/patienti/get", async (req, res) => {
+    let connection = await oracledb.getConnection(dbConfig);
     let patientii = await PatientController.GetPatientii(connection);
+    connection.close();
     res.send(patientii);
   });
 
   app.post("/patienti/add", async (req, res) => {
+    let connection = await oracledb.getConnection(dbConfig);
     let response = await PatientController.AddPatient(connection, req.body);
+    connection.close();
     res.send(response);
   });
 
   app.put("/patienti/update", async(req,res)=>{
+    let connection = await oracledb.getConnection(dbConfig);
     let response = await PatientController.UpdateMailulPacientului(connection,req.body);
+    connection.close();
     res.send(response);
   })
 
   app.delete("/patienti/delete", async(req,res)=>{
+    let connection = await oracledb.getConnection(dbConfig);
     let response = await PatientController.DeletePatient(connection,req.body.userId);
+    connection.close();
     res.send(response);
   })
 
   app.get("/medici/get", async (req, res) => {
+    let connection = await oracledb.getConnection(dbConfig);
     let medici = await MedicController.GetMedici(connection);
+    connection.close();
     res.send(medici);
   });
 
   app.post("/medici/add", async (req, res) => {
+    let connection = await oracledb.getConnection(dbConfig);
     let response = await MedicController.AddMedic(connection, req.body);
+    connection.close();
     res.send(response);
   });
 
   app.put("/medici/update", async(req,res)=>{
+    let connection = await oracledb.getConnection(dbConfig);
     let response = await MedicController.UpdateMailulMedicului(connection,req.body);
+    connection.close();
     res.send(response);
   })
 
   app.delete("/medici/delete", async(req,res)=>{
+    let connection = await oracledb.getConnection(dbConfig);
     let response = await MedicController.DeleteMedic(connection, req.body.userId);
+    connection.close();
     res.send(response);
   })
 
   app.get("/programari/get", async (req, res) => {
+    let connection = await oracledb.getConnection(dbConfig);
     let patientii = await ProgramariControlller.GetProgramari(connection);
+    connection.close();
     res.send(patientii);
   });
 
   app.post("/programari/add", async (req, res) => {
+    let connection = await oracledb.getConnection(dbConfig);
     let response = await ProgramariControlller.AddProgramari(connection, req.body);
+    connection.close();
     res.send(response);
   });
  
   app.put("/programari/update", async (req, res) => {
+    let connection = await oracledb.getConnection(dbConfig);
     let response = await ProgramariControlller.UpdateDataProgramari(connection, req.body);
+    connection.close();
     res.send(response);
   });
 
   app.delete("/programari/delete", async (req, res) => {
+    let connection = await oracledb.getConnection(dbConfig);
     let response = await ProgramariControlller.DeleteProgramari(connection, req.body.programariId);
+    connection.close();
     res.send(response);
   });
 
