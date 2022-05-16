@@ -81,6 +81,15 @@ async function run() {
     res.send(response);
   });
  
+  app.put("/programari/update", async (req, res) => {
+    let response = await ProgramariControlller.UpdateDataProgramari(connection, req.body);
+    res.send(response);
+  });
+
+  app.delete("/programari/delete", async (req, res) => {
+    let response = await ProgramariControlller.DeleteProgramari(connection, req.body.programariId);
+    res.send(response);
+  });
 
 }
 

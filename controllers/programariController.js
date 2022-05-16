@@ -57,7 +57,7 @@ async function UpdateDataProgramari(connection, data) {
   try {
     result = await connection.execute(
       "UPDATE programari set time=TO_DATE(:time, 'YYYY-MM-DD') WHERE id=:id ",
-      { time: data.time, id: data.userId },
+      { time: data.time, id: data.programariId },
       { autoCommit: true }
     );
     console.log("Rows updated: " + result.rowsAffected);
@@ -79,7 +79,7 @@ async function UpdateDataProgramari(connection, data) {
   }
 }
 
-async function DeleteProgramari(connection, userId) {
+async function DeleteProgramari(connection, programariId) {
   let resData;
   try {
     result = await connection.execute(
