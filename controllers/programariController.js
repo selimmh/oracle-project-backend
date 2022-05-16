@@ -22,7 +22,7 @@ async function AddProgramari(connection, data) {
   let resData;
   try {
     result = await connection.execute(
-      `INSERT INTO programari VALUES (:1, :2, TO_DATE(:3, 'YYYY-MM-DD'), :4, patient_id(:5), medic_id(:6))`,
+      `INSERT INTO programari VALUES (:1, :2, TO_DATE(:3, 'YYYY-MM-DD'), :4, :5, :6)`,
       {
         1: uuidv4(),
         2: data.caz,
