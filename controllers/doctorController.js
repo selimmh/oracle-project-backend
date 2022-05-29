@@ -22,7 +22,7 @@ async function AddMedic(connection, data) {
   let resData;
   try {
     result = await connection.execute(
-      `INSERT INTO medic VALUES (:1, :2, :3, :4, :5, :6)`,
+      `INSERT INTO doctor VALUES (:1, :2, :3, :4, :5, :6)`,
       {
         1: uuidv4(),
         2: data.nrTel,
