@@ -22,14 +22,15 @@ async function AddMedic(connection, data) {
   let resData;
   try {
     result = await connection.execute(
-      `INSERT INTO doctor VALUES (:1, :2, :3, :4, :5, :6)`,
+      `INSERT INTO doctor VALUES (:1, :2, :3, :4, :5, :6 , :7)`,
       {
         1: uuidv4(),
-        2: data.nrTel,
+        2: data.prenume,
         3: data.nume,
         4: data.spec,
-        5: data.gen,
+        5: data.camera,
         6: data.email,
+        7: data.tel,
       },
       { autoCommit: true }
     );
