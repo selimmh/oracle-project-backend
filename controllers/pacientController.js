@@ -59,7 +59,7 @@ async function UpdateMailulPacientului(connection, data) {
   let resData;
   try {
     result = await connection.execute(
-      "UPDATE pacient set email=:email  WHERE id=:id ",
+      "UPDATE pacient set email=:email  WHERE id_pacient=:id ",
       { email: data.email, id: data.userId },
       { autoCommit: true }
     );
