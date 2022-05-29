@@ -6,13 +6,11 @@ const programariRouter = require("./routes/programariRouter");
 const patientRouter = require("./routes/patientiRouter");
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
-
 async function run() {
- 
   if (process.platform === "darwin") {
     try {
       oracledb.initOracleClient({
-        libDir: "/Users/pyagmyrov/Documents/oracle/instantclient_19_8",
+        libDir: "/Users/selimmh/Documents/oracle/instantclient_19_8",
       });
     } catch (err) {
       console.error("Whoops!");
@@ -21,13 +19,11 @@ async function run() {
     }
   }
 
-  console.log("hellooo")
+  console.log("hellooo");
 
-  app.use("/medici",mediciRouter);
+  app.use("/medici", mediciRouter);
   app.use("/pacienti", patientRouter);
   app.use("/programari", programariRouter);
-
-
 }
 
 run();
