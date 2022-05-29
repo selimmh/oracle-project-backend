@@ -2,7 +2,7 @@ const oracledb = require("oracledb");
 const { v4: uuidv4 } = require("uuid");
 
 async function GetProgramari(connection) {
-  sql = `SELECT * FROM programari`;
+  sql = `SELECT * FROM programare`;
   binds = {};
 
   options = {
@@ -22,14 +22,15 @@ async function AddProgramari(connection, data) {
   let resData;
   try {
     result = await connection.execute(
-      `INSERT INTO programari VALUES (:1, :2, TO_TIMESTAMP(:3, 'YYYY-MM-DD HH24:MI'), :4, :5, :6)`,
+      `INSERT INTO programare VALUES (:1, TO_TIMESTAMP(:2, 'YYYY-MM-DD HH24:MI'), :3, :4, :5, :6)`,
       {
         1: uuidv4(),
-        2: data.caz,
-        3: data.time,
-        4: data.duration,
-        5: data.patientId,
-        6: data.medicId,
+        2: data.time,
+        3: data.idPacient,
+        4: data.idDoctor,
+        5: data.idDiagnostic,
+        6: data.idTratament,
+      
       },
       { autoCommit: true }
     );
@@ -56,8 +57,8 @@ async function UpdateDataProgramari(connection, data) {
   let resData;
   try {
     result = await connection.execute(
-      "UPDATE programari set time=TO_DATE(:time, 'YYYY-MM-DD') WHERE id=:id ",
-      { time: data.time, id: data.programariId },
+      "UPDATE programare set id_diagnostic=:idDiagnostic, id_tratament=:idTratament WHERE id_programare=:id ",
+      { idDiagnostic: data.idDiagnostic, idTratament: data.idTratament, id: data.programariId },
       { autoCommit: true }
     );
     console.log("Rows updated: " + result.rowsAffected);
@@ -83,7 +84,7 @@ async function DeleteProgramari(connection, programariId) {
   let resData;
   try {
     result = await connection.execute(
-      "DELETE FROM programari WHERE id=:id ",
+      "DELETE FROM programare WHERE id_programare=:id ",
       { id: programariId },
       { autoCommit: true }
     );
