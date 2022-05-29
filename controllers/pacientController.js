@@ -86,7 +86,7 @@ async function DeletePatient(connection, userId) {
     let resData;
     try {
       result = await connection.execute(
-        "DELETE FROM pacient WHERE id=:id ",
+        "DELETE FROM pacient WHERE id_pacient=:id ",
         { id: userId },
         { autoCommit: true }
       );
