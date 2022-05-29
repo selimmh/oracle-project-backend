@@ -8,9 +8,9 @@ oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
 async function run() {
   console.log("hellooo");
-  app.use("/medici", mediciRouter);
+  app.use("/doctor", mediciRouter);
   app.use("/pacient", patientRouter);
-  app.use("/programari", programariRouter);
+  app.use("/programare", programariRouter);
 }
 
 run();
