@@ -3,6 +3,7 @@ process.env.ORA_SDTZ = "UTC";
 const app = require("./app/express.js");
 const mediciRouter = require("./routes/mediciRouter");
 const programariRouter = require("./routes/programariRouter");
+const diagnosticRouter = require("./routes/diagnosticRouter");
 const patientRouter = require("./routes/patientiRouter");
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
@@ -11,6 +12,7 @@ async function run() {
   app.use("/doctor", mediciRouter);
   app.use("/pacient", patientRouter);
   app.use("/programare", programariRouter);
+  app.use("/diagnostic", diagnosticRouter);
 }
 
 run();
