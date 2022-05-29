@@ -1,7 +1,7 @@
 var express = require('express');
 const oracledb = require("oracledb");
 var router = express.Router();
-const MedicController = require("../controllers/medicController");
+const MedicController = require("../controllers/doctorController");
 const dbConfig = require("../db/config");
 
 router.get('/get', async function (req, res) {

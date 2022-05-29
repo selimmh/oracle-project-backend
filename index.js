@@ -12,7 +12,7 @@ async function run() {
   if (process.platform === "darwin") {
     try {
       oracledb.initOracleClient({
-        libDir: "/Users/pyagmyrov/downloads/instantclient_19_8",
+        libDir: "/Users/pyagmyrov/Documents/oracle/instantclient_19_8",
       });
     } catch (err) {
       console.error("Whoops!");
@@ -24,7 +24,7 @@ async function run() {
   console.log("hellooo")
 
   app.use("/medici",mediciRouter);
-  app.use("/patienti", patientRouter);
+  app.use("/pacienti", patientRouter);
   app.use("/programari", programariRouter);
 
 

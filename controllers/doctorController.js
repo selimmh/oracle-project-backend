@@ -2,7 +2,7 @@ const oracledb = require("oracledb");
 const { v4: uuidv4 } = require("uuid");
 
 async function GetMedici(connection) {
-  sql = `SELECT * FROM medic`;
+  sql = `SELECT * FROM doctor`;
   binds = {};
 
   options = {

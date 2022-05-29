@@ -1,7 +1,7 @@
 var express = require('express');
 const oracledb = require("oracledb");
 var router = express.Router();
-const PatientController = require("../controllers/patientController");
+const PatientController = require("../controllers/pacientController");
 const dbConfig = require("../db/config");
 
 
