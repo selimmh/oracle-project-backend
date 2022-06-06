@@ -4,14 +4,46 @@ const { v4: uuidv4 } = require("uuid");
 async function GetProgramari(connection) {
   sql = `SELECT * FROM programare`;
   binds = {};
-
   options = {
     outFormat: oracledb.OUT_FORMAT_OBJECT,
   };
-  let result;
+  let programare;
   try {
-    result = await connection.execute(sql, binds, options);
-    return result.rows;
+    programare = await connection.execute(sql, binds, options);
+    sql2 = `SELECT * FROM pacient where id_pacient = :id`;
+    binds2 = {id:programare.rows[0].ID_PACIENT};
+    options2 = {
+      outFormat: oracledb.OUT_FORMAT_OBJECT,
+    };
+    let pacient;
+    try{
+      pacient = await connection.execute(sql2, binds2,options2);
+    }catch(e){
+      console.log(e);
+      return e;
+    }
+    sql3 = `SELECT * FROM doctor where id_doctor = :id`;
+    binds3 = {id:programare.rows[0].ID_DOCTOR};
+    options3 = {
+      outFormat: oracledb.OUT_FORMAT_OBJECT,
+    };
+    let doctor;
+    try{
+      doctor = await connection.execute(sql3, binds3,options3);
+    }catch(e){
+      console.log(e);
+      return e;
+    }
+    
+    let returnData = {
+      ID_PACIENT:programare.rows[0].ID_PACIENT,
+      ID_DOCTOR:programare.rows[0].ID_DOCTOR,
+      ID_PROGRAMARE:programare.rows[0].ID_PROGRAMARE,
+      DATA_PROGRAMARE:programare.rows[0].DATA_PROGRAMARE,
+      pacient: pacient.rows[0],
+      doctor: doctor.rows[0],
+    }
+    return returnData;
   } catch (e) {
     console.log(e);
     return e;
@@ -28,8 +60,8 @@ async function AddProgramari(connection, data) {
         2: data.time,
         3: data.idPacient,
         4: data.idDoctor,
-        5: data.idDiagnostic,
-        6: data.idTratament,
+        5: data.tratament,
+        6: data.diagnostic,
       
       },
       { autoCommit: true }
