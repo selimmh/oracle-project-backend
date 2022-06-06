@@ -39,6 +39,8 @@ async function GetProgramari(connection) {
       ID_PACIENT:programare.rows[0].ID_PACIENT,
       ID_DOCTOR:programare.rows[0].ID_DOCTOR,
       ID_PROGRAMARE:programare.rows[0].ID_PROGRAMARE,
+      TRATAMENT:programare.rows[0].TRATAMENT,
+      MEDICAMENT:programare.rows[0].MEDICAMENT,
       DATA_PROGRAMARE:programare.rows[0].DATA_PROGRAMARE,
       pacient: pacient.rows[0],
       doctor: doctor.rows[0],
@@ -61,7 +63,7 @@ async function AddProgramari(connection, data) {
         3: data.idPacient,
         4: data.idDoctor,
         5: data.tratament,
-        6: data.diagnostic,
+        6: data.medicament,
       
       },
       { autoCommit: true }
