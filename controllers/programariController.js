@@ -91,8 +91,8 @@ async function UpdateDataProgramari(connection, data) {
   let resData;
   try {
     result = await connection.execute(
-      "UPDATE programare set id_diagnostic=:idDiagnostic, id_tratament=:idTratament WHERE id_programare=:id ",
-      { idDiagnostic: data.idDiagnostic, idTratament: data.idTratament, id: data.programariId },
+      "UPDATE programare set DATA_PROGRAMARE = TO_TIMESTAMP(:time, 'YYYY-MM-DD HH24:MI') WHERE id_programare=:id ",
+      { time: data.time , id: data.programariId },
       { autoCommit: true }
     );
     console.log("Rows updated: " + result.rowsAffected);
