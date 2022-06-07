@@ -50,7 +50,6 @@ async function GetProgramari(connection) {
       returnArray.push(returnData);
     }
 
-
     return returnArray;
   } catch (e) {
     console.log(e);
